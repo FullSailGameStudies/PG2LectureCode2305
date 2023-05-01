@@ -105,14 +105,31 @@ namespace Day01
                 
                 When you want to create a List variable, replace T with whatever type of data you want to store in the List.
             */
-            List<string> names = new List<string>(); //this list stores strings and only strings.
-
+            List<string> names;//value? null
+            //creating an instance of the list class 
+            names = new List<string>() { "Bats", "Elon", "Bruce", "NOT Aquaman" };
+            //this list stores strings and only strings.
+            names.Add("Clark");//adds to the end of the list
+            names.Add("Stephen");
+            names.Insert(2, "Diana");
             /*
                 CHALLENGE 2:
 
                     Create a list that stores floats. Call the variable grades.
              
             */
+            /*
+                CHALLENGE 3:
+
+                    Add a few grades to the grades list you created in CHALLENGE 2.
+             
+            */
+            Random rando = new();
+            List<float> grades = new() { rando.Next(101) };
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
+            grades.Add((float)rando.NextDouble() * 100);
 
 
 
@@ -133,12 +150,6 @@ namespace Day01
             List<char> letters = new List<char>() { 'B', 'a', 't', 'm', 'a', 'n' };
             letters.Add('!');
 
-            /*
-                CHALLENGE 3:
-
-                    Add a few grades to the grades list you created in CHALLENGE 2.
-             
-            */
 
 
 
