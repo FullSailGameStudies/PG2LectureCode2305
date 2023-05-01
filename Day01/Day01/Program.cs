@@ -74,14 +74,22 @@ namespace Day01
             */
             int number = 5;
             int plusOne = AddOne(number);
+            //$ - interpolated string
+            Console.WriteLine($"{number} + 1 = {plusOne}");
 
             /*
                 CHALLENGE 1:
 
-                    call the Sum method on the t1000 calculator. Print the sum that is returned.
+                    call the Sum method on the t1000 calculator. 
+                    Print the sum that is returned.
              
             */
             Calculator t1000 = new Calculator();
+            Calculator.DoIt();//b/c DoIt is static
+
+            int number1 = 5, number2 = 2;
+            int summer = t1000.Sum(number1, number2);
+            Console.WriteLine(summer);
 
 
 
@@ -177,6 +185,11 @@ namespace Day01
 
     class Calculator
     {
+        public static void DoIt()
+        {
+
+        }
+
         public int Sum(int num1, int num2)
         {
             return num1 + num2;
