@@ -49,6 +49,12 @@ namespace Day01
      */
     internal class Program
     {
+        static void Info(List<string> names)
+        {
+            //Count: # of items in the list
+            //Capacity: Length of the internal array
+            Console.WriteLine($"Count: {names.Count}\tCapacity: {names.Capacity}");
+        }
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -107,11 +113,27 @@ namespace Day01
             */
             List<string> names;//value? null
             //creating an instance of the list class 
-            names = new List<string>() { "Bats", "Elon", "Bruce", "NOT Aquaman" };
+            names = new List<string>(10);// { "Bats", "Elon", "Bruce", "NOT Aquaman" };
+            Info(names);//Count: 0   Capacity: 1? 10?
             //this list stores strings and only strings.
             names.Add("Clark");//adds to the end of the list
+            Info(names);//Count: 1   Capacity: 4
             names.Add("Stephen");
-            names.Insert(2, "Diana");
+            names.Add("Bruce");
+            names.Add("Barry");
+            names.Add("Alfred");
+            //names.Insert(2, "Diana");
+            Info(names);//Count: 5   Capacity: 5? 20?
+            names.Add("Arthur");
+            names.Add("Joseph");
+            names.Add("John");
+            names.Add("Ryan");
+            Info(names);//Count: 9   Capacity: 12
+            names.Add("Paul");
+            names.Add("Truman");
+            Info(names);//Count: 11   Capacity: 20?
+            names.TrimExcess();
+            Info(names);
             /*
                 CHALLENGE 2:
 
@@ -124,12 +146,10 @@ namespace Day01
                     Add a few grades to the grades list you created in CHALLENGE 2.
              
             */
-            Random rando = new();
-            List<float> grades = new() { rando.Next(101) };
-            grades.Add((float)rando.NextDouble() * 100);
-            grades.Add((float)rando.NextDouble() * 100);
-            grades.Add((float)rando.NextDouble() * 100);
-            grades.Add((float)rando.NextDouble() * 100);
+            Random rando = new Random();
+            List<float> grades = new List<float>() { rando.Next(101) };
+            for (int i = 0; i < 10; i++)
+                grades.Add((float)rando.NextDouble() * 100);
 
 
 
