@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Day01
 {
@@ -193,6 +194,18 @@ namespace Day01
             foreach (var letter in letters)
                 Console.Write($" {letter}");
 
+
+            for (int i = 0; i < names.Count; i++)
+            {
+                Console.WriteLine($"Hello. My name is {names[i]}.");
+            }
+
+            foreach (string name in names)
+            {
+
+            }
+
+            var anon = new { Name = "Bob" };//anonymous type
             /*
                 CHALLENGE 4:
 
@@ -231,7 +244,17 @@ namespace Day01
         {
             float avg = 0F;
 
+            float sum = 0;
             //loop over the numbers and calculate the average
+            int index = 0;
+            while(index < numbers.Count)
+            {
+                sum += numbers[index];
+                ++index;
+            }
+            avg = sum / numbers.Count;
+
+            avg = numbers.Average();
 
             return avg;
         }

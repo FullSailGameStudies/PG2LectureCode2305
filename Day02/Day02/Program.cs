@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace Day02
@@ -73,7 +74,12 @@ namespace Day02
                     This is because the parameter is actually just a new name for the other variable.
             */
             string spider = "Spiderman";
+            Console.WriteLine(spider);
             bool isEven = PostFix(ref spider);
+            Console.WriteLine($"{spider}. Is Even? {isEven}");
+            string theMan = "Batman";
+            isEven = PostFix(ref theMan);
+
 
             /*
                 CHALLENGE 1:
@@ -86,6 +92,10 @@ namespace Day02
              
             */
             double grade = randy.NextDouble() * 100;
+            Console.WriteLine($"My grade is {grade:N2}.");
+            double curved = CurveGrade(ref grade);
+            Console.WriteLine($"My grade was curved by {curved:N2} to {grade:N2}.");
+
 
 
 
@@ -99,10 +109,12 @@ namespace Day02
                     the method MUST assign a value to the parameter before returning
 
             */
+            Console.ReadKey();
             ConsoleColor randoColor; //don't have to initialize it
             GetRandomColor(out randoColor);
             Console.BackgroundColor = randoColor;
             Console.WriteLine("Hello Gotham!");
+            Console.ResetColor();
 
 
             /*
@@ -110,7 +122,8 @@ namespace Day02
 
                     Write a method to calculate the stats on a list of grades
                     1) create a list of grades in main and add a few grades to it
-                    2) create a method to calculate the min, max, and avg. use out parameters to pass this data back from the method.
+                    2) create a method to calculate the min, max, and avg. 
+                       use out parameters to pass this data back from the method.
                     3) print out the min, max, and avg
              
             */
@@ -147,6 +160,13 @@ namespace Day02
 
 
 
+        }
+
+        private static double CurveGrade(ref double grade)
+        {
+            double curveAmount = grade * 0.05;
+            grade += curveAmount;
+            return curveAmount;
         }
 
         private static void GetRandomColor(out ConsoleColor outColor)
