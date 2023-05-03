@@ -137,8 +137,10 @@ namespace Day02
             Console.WriteLine("--GRADES--");
             foreach(var pg2Grade in grades)
             {
-                //(condition) ? <true case> : <false case?
+                //(condition) ? <true case> : <false case>
                 ColorCode(pg2Grade);
+                //,7 -- right-aligns in 7 spaces
+                //:N2 -- number w/ 2 decimal places
                 Console.WriteLine($"{pg2Grade,7:N2}");
             }
             Console.ResetColor();
@@ -168,14 +170,15 @@ namespace Day02
 
             */
             List<string> dc = new() { "Batman", "Wonder Woman", "Aquaman", "Superman", "Aquaman" };
-            bool found = dc.Remove("Aquaman");
+            bool found = dc.Remove("Aquaman");//only removes the FIRST Aquaman
 
             dc.RemoveAt(dc.Count - 1);//removes the last item
 
             /*
                 CHALLENGE 3:
 
-                    Using the list of grades you created in CHALLENGE 2, remove the min and max grades from the list.
+                    Using the list of grades you created in CHALLENGE 2,                     
+                    Remove all failing grades.
                     Print the grades.
             */
 
