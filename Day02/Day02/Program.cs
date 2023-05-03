@@ -134,15 +134,7 @@ namespace Day02
             //double min, max, avg;
             //CalculateStats(grades, out min, out max, out avg);
             (double min, double max, double avg) = CalculateStats(grades);
-            Console.WriteLine("--GRADES--");
-            foreach(var pg2Grade in grades)
-            {
-                //(condition) ? <true case> : <false case>
-                ColorCode(pg2Grade);
-                //,7 -- right-aligns in 7 spaces
-                //:N2 -- number w/ 2 decimal places
-                Console.WriteLine($"{pg2Grade,7:N2}");
-            }
+            PrintGrades(grades);
             Console.ResetColor();
             ColorCode(min);
             Console.WriteLine($"Min: {min:N2}");
@@ -181,10 +173,45 @@ namespace Day02
                     Remove all failing grades.
                     Print the grades.
             */
+            //for (int i = 0; i < grades.Count; i++)
+            //{
+            //    if (grades[i] < 59.5)
+            //    {
+            //        grades.RemoveAt(i);
+            //        i--;
+            //    }
+            //}
+            //for (int i = 0; i < grades.Count; )
+            //{
+            //    if (grades[i] < 59.5)
+            //        grades.RemoveAt(i);
+            //    else
+            //        ++i;
+            //}
+            for (int i = grades.Count - 1; i >= 0; i--)
+            {
+                if (grades[i] < 59.5)
+                    grades.RemoveAt(i);
+            }
+
+            PrintGrades(grades);
 
 
 
+        }
 
+        private static void PrintGrades(List<double> grades)
+        {
+            Console.WriteLine("--GRADES--");
+            foreach (var pg2Grade in grades)
+            {
+                //(condition) ? <true case> : <false case>
+                ColorCode(pg2Grade);
+                //,7 -- right-aligns in 7 spaces
+                //:N2 -- number w/ 2 decimal places
+                Console.WriteLine($"{pg2Grade,7:N2}");
+            }
+            Console.ResetColor();
         }
 
         private static void ColorCode(double grade)
