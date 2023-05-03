@@ -127,6 +127,28 @@ namespace Day02
                     3) print out the min, max, and avg
              
             */
+            List<double> grades = new();
+            for (int i = 0; i < 10; i++)
+                grades.Add(randy.NextDouble() * 100);
+
+            //double min, max, avg;
+            //CalculateStats(grades, out min, out max, out avg);
+            (double min, double max, double avg) = CalculateStats(grades);
+            Console.WriteLine("--GRADES--");
+            foreach(var pg2Grade in grades)
+            {
+                //(condition) ? <true case> : <false case?
+                ColorCode(pg2Grade);
+                Console.WriteLine($"{pg2Grade,7:N2}");
+            }
+            Console.ResetColor();
+            ColorCode(min);
+            Console.WriteLine($"Min: {min:N2}");
+            ColorCode(max);
+            Console.WriteLine($"Max: {max:N2}");
+            ColorCode(avg);
+            Console.WriteLine($"Average: {avg:N2}");
+            Console.ResetColor();
 
 
 
@@ -160,6 +182,53 @@ namespace Day02
 
 
 
+        }
+
+        private static void ColorCode(double grade)
+        {
+            Console.ForegroundColor =   (grade < 59.5) ? ConsoleColor.Red :
+                                        (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                        (grade < 79.5) ? ConsoleColor.Yellow :
+                                        (grade < 89.5) ? ConsoleColor.Blue :
+                                        ConsoleColor.Green;
+        }
+
+        private static void CalculateStats(List<double> grades, out double min, out double max, out double avg)
+        {
+            //min = grades.Min();
+            //max = grades.Max();
+            //avg = grades.Average();
+
+            min = double.MaxValue;
+            max = double.MinValue;
+            double sum = 0;
+            foreach (var grade in grades)
+            {
+                sum += grade;
+                min = Math.Min(min, grade);
+                max = Math.Max(max, grade);
+            }
+            avg = sum / grades.Count;
+        }
+
+
+        private static (double,double,double) CalculateStats(List<double> grades)
+        {
+            //min = grades.Min();
+            //max = grades.Max();
+            //avg = grades.Average();
+
+            double min = double.MaxValue;
+            double max = double.MinValue;
+            double sum = 0;
+            foreach (var grade in grades)
+            {
+                sum += grade;
+                min = Math.Min(min, grade);
+                max = Math.Max(max, grade);
+            }
+            double avg = sum / grades.Count;
+            return (min, max, avg);
         }
 
         private static double CurveGrade(ref double grade)
