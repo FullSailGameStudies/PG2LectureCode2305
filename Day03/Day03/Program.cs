@@ -84,16 +84,73 @@ namespace Day03
             /*
                 CHALLENGE 1:
 
-                    Write a ColorWriteLine method to print a message with a foreground color in the console.
-                    1) add a string message parameter AND an optional color parameter. Choose whatever default color you want.
+                    Write a ColorWriteLine method to print a message with a foreground color in the console. ConsoleColor
+                    1) add a string message parameter AND an optional color parameter. 
+                        Choose whatever default color you want.
                     2) in the method, set the foreground color to the optional parameter
                     3) print the message
              
             */
 
+            List<int> numbers = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int[] iNums = new int[] { 1, 2, 3, 4, 5, };
+            List<int> n1 = new();
+            for (int i = 0; i < iNums.Length; i++)
+            {
+                n1.Add(iNums[i]);
+            }
+            List<int> n2 = new(iNums);
+            List<int> n3 = iNums.ToList();
+            var n4 = numbers.ToList();
+            ShowMe(n4);
+
+            List<int> n5 = new();
+            MakeList(ref n5);
+            Console.WriteLine("--NUMBERS--");
+            foreach (int number in n5) { 
+                Console.WriteLine(number);
+            }
+            Console.ReadKey();
+
+
+            ColorWriteLine("Because I'm BATMAN!");
+            ColorWriteLine("Because I'm BATMAN!", ConsoleColor.DarkCyan);
+            Random randy = new Random();
+            while (true)
+            {
+                Console.CursorLeft = randy.Next(Console.WindowWidth);
+                Console.CursorTop = Console.WindowHeight / 2;
+                //Console.SetCursorPosition(randy.Next(Console.WindowWidth), randy.Next(Console.WindowHeight));
+                ColorWriteLine("    BATMAN     ", (ConsoleColor)randy.Next(16));
+            }
+
         }
 
-        static string PostFix(string fileName, int postFixNumber = 1) //postFixNumber is optional
+        static void MakeList(ref List<int> list)
+        {
+            list = new();//creates a new list
+            for (int i = 0; i < 10; i++)
+            {
+                list.Add(i);
+            }
+        }
+
+        static void ShowMe(List<int> nums)//pass by...value. COPY. copying the memory address.
+        {
+            for (int i = 0; i < nums.Count; i++)
+            {
+                nums[i] *= 5;
+                Console.WriteLine(nums[i]);
+            }
+        }
+        static void ColorWriteLine(string message, ConsoleColor color = ConsoleColor.Red)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(message);
+            Console.ResetColor();
+        }
+
+        static string PostFix( string fileName, int postFixNumber = 1) //postFixNumber is optional
         {
             return fileName + postFixNumber;
         }
