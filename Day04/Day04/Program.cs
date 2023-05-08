@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
@@ -41,8 +42,25 @@ namespace Day04
             }
             Console.WriteLine("WE'RE DONE!!!!");
         }
+        static ulong[] _fibs;
         static void Main(string[] args)
         {
+            Stopwatch sw = new();
+            int max = 145;
+            _fibs = new ulong[max];
+            _fibs[0] = 0;
+            _fibs[1] = 1;
+            for (uint i = 0; i < max; i++)
+            {
+                sw.Restart();
+                ulong fibResult = Fib(i);
+                sw.Stop();
+                long ms = sw.ElapsedMilliseconds;
+                Console.Write($"Fib({i}) = {fibResult}");
+                Console.CursorLeft = 50;
+                Console.WriteLine($"{ms} (ms)");
+            }
+
             Method(1);
             string s1 = "Batman", s2 = "Aquaman";
             //CompareTo
@@ -144,6 +162,18 @@ namespace Day04
 
             ulong f = Factorial(5);
             Console.WriteLine($"5! = {f}");
+        }
+
+        static ulong Fib(uint N)
+        {
+            if (N == 0) return 0;
+
+            if (_fibs[N] != 0)
+                return _fibs[N];
+
+            ulong f = Fib(N - 1) + Fib(N - 2);
+            _fibs[N] = f;
+            return f;
         }
 
         static ulong Factorial(uint N)
