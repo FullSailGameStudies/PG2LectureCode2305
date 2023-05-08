@@ -31,8 +31,19 @@ namespace Day04
                 --count;
             } while (swapped);
         }
+
+        static void Method(int N)
+        {
+            if(N < 200)
+            {
+                ++N;
+                Method(N);
+            }
+            Console.WriteLine("WE'RE DONE!!!!");
+        }
         static void Main(string[] args)
         {
+            Method(1);
             string s1 = "Batman", s2 = "Aquaman";
             //CompareTo
             //  -1  LESS THAN
@@ -95,7 +106,7 @@ namespace Day04
               
             */
             int N = 0;
-            RecursiveLoop(N);
+            //RecursiveLoop(N);
             Console.ResetColor();
 
 
@@ -111,8 +122,38 @@ namespace Day04
                         Console.Write(' ');
                     }
             */
+            Console.WriteLine();
+            Console.WriteLine();
+            Bats(0);
+            Console.WriteLine();
+            List<int> b = new() { 66, 65, 84, 77, 65, 78, 33, 33 };
+            foreach (var item in b) Console.Write((char)item);
+            Console.WriteLine();
 
+        }
 
+        static void Bats(int i)
+        {
+            if(i < 100)
+            {
+                Console.Write((char)78);
+                Console.Write((char)65);
+                Console.Write(' ');
+                Bats(i+1);
+            }
+
+            ulong f = Factorial(5);
+            Console.WriteLine($"5! = {f}");
+        }
+
+        static ulong Factorial(uint N)
+        {
+            ulong result = 1;
+            if(N > 1)
+            {
+                result = N * Factorial(N - 1);
+            }
+            return result;
         }
 
 
