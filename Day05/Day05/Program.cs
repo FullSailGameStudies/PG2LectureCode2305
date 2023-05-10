@@ -45,6 +45,7 @@ namespace Day04
             name = "Paul";
             FindHero(jla, name);
             Console.ReadKey();
+            jla.Sort();
 
 
 
@@ -63,15 +64,16 @@ namespace Day04
                 When you want to create a Dictionary variable, replace TKey with whatever type of data you want to use for the keys and
                 replace TValue with the type you want to use for the values.
             */
+            Dictionary<string, double> menu = new()
+            {
+                // {key,value} key-value pair
+                {"Egg roll", 2.99 },
+                {"Banh mi", 8.99 }
+                //{"Banh mi", 13.99 }//throws an exception, key is already in the dictionary!
+            };
 
             Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
 
-            /*
-                CHALLENGE 2:
-
-                    Create a Dictionary that stores names (string) and grades. Call the variable grades.
-             
-            */
 
 
 
@@ -88,6 +90,35 @@ namespace Day04
                 2) using the Add method. 
                 3) using [key] = value
             */
+
+            menu.Add("sushi", 4.99);
+            menu.Add("quinoa", 3.59);
+            if(!menu.TryAdd("quinoa", 3.59))
+            {
+                Console.WriteLine("Quinoa is already on the menu. (not sure why though)");
+            }
+            try
+            {
+                menu.Add("quinoa", 6.59);//throws exception
+            }
+            catch(ArgumentException agex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Quinoa is already on the menu. (not sure why though)");
+            }
+
+            menu["Lasagna"] = 24.19;
+            menu["Steak"] = 25;
+            menu["Burrito"] = 10;
+            menu["Burrito"] = 12;//overwrites the value
+
+            menu["Chocolate Waffles"] = 12.99;
+
+            menu["Truffle pizza"] = 1000000;
+
             backpack = new Dictionary<Weapon, int>()
             {
                 {Weapon.Sword, 5 }
@@ -96,6 +127,10 @@ namespace Day04
             backpack[Weapon.Spear] = 1;
 
             /*
+                CHALLENGE 2:
+
+                    Create a Dictionary that stores names (string) and grades. Call the variable grades.
+             
                 CHALLENGE 3:
 
                     Add students and grades to your dictionary that you created in CHALLENGE 2.
