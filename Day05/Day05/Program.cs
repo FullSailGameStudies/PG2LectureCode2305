@@ -185,6 +185,19 @@ namespace Day04
                     Loop over your grades dictionary and print each student name and grade.
              
             */
+            Console.WriteLine("   May PG02   ");
+            foreach (var student in grades)
+            {
+                double grade = student.Value;
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue :
+                                          ConsoleColor.Green;
+                Console.Write($"{student.Value,7:N2}");
+                Console.ResetColor();
+                Console.WriteLine($" {student.Key}");
+            }
 
 
 
@@ -202,6 +215,20 @@ namespace Day04
                 2) TryGetValue(key, out value)
                
             */
+
+            name = "Chicken Nuggets";
+            if (menu.ContainsKey(name))
+            {
+                double menuPrice = menu[name];
+                Console.WriteLine($"{name} costs {menuPrice:C2}");
+            }
+            if(menu.TryGetValue(name, out double nuggetPrice))
+            {
+                Console.WriteLine($"{name} costs {nuggetPrice:C2}");
+            }
+
+
+
             if (backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
@@ -212,7 +239,8 @@ namespace Day04
             /*
                 CHALLENGE 5:
 
-                    Using either of the 2 ways to check for a key, look for a specific student in the dictionary. 
+                    Using either of the 2 ways to check for a key, 
+                    look for a specific student in the dictionary. 
                     If the student is found, print out the student's grade
                     else print out a message that the student was not found
              
