@@ -11,6 +11,11 @@ namespace Day04
         {
             Sword, Axe, Spear, Mace
         }
+
+        //static int IndexOf(List<string> list, string searchItem)
+        //{
+
+        //}
         static void Main(string[] args)
         {
             /*
@@ -33,6 +38,16 @@ namespace Day04
                         4) if reach the end of the list, return -1 which means not found
                     
             */
+            List<string> jla = new()
+            { "Wonder Woman", "Superman", "Aquaman", "Batman", "Flash", "Green Lantern" };
+            string name = "Batman";
+            FindHero(jla, name);
+            name = "Paul";
+            FindHero(jla, name);
+            Console.ReadKey();
+
+
+
 
 
 
@@ -48,7 +63,7 @@ namespace Day04
                 When you want to create a Dictionary variable, replace TKey with whatever type of data you want to use for the keys and
                 replace TValue with the type you want to use for the values.
             */
-           
+
             Dictionary<Weapon, int> backpack = new Dictionary<Weapon, int>();//will store the counts of each kind of weapon
 
             /*
@@ -102,7 +117,7 @@ namespace Day04
                 You should use a foreach loop when needing to loop over the entire dictionary.
                
             */
-            foreach (KeyValuePair<Weapon,int> weaponCount in backpack)
+            foreach (KeyValuePair<Weapon, int> weaponCount in backpack)
                 Console.WriteLine($"You have {weaponCount.Value} {weaponCount.Key}");
 
 
@@ -129,11 +144,11 @@ namespace Day04
                 1) ContainsKey(key)
                 2) TryGetValue(key, out value)
                
-            */            
-            if(backpack.ContainsKey(Weapon.Axe))
+            */
+            if (backpack.ContainsKey(Weapon.Axe))
                 Console.WriteLine($"{Weapon.Axe} count: {backpack[Weapon.Axe]}");
 
-            if(backpack.TryGetValue(Weapon.Spear, out int spearCount))
+            if (backpack.TryGetValue(Weapon.Spear, out int spearCount))
                 Console.WriteLine($"{Weapon.Spear} count: {spearCount}");
 
 
@@ -173,6 +188,27 @@ namespace Day04
                     Pick any student and curve the grade (add 5) that is stored in the grades dictionary
              
             */
+        }
+
+        private static void FindHero(List<string> jla, string name)
+        {
+            int index = IndexOf(jla, name);
+            if (index >= 0) Console.WriteLine($"{name} was found at index {index}.");
+            else Console.WriteLine($"{name} was not found.");
+        }
+
+        private static int IndexOf(List<string> jla, string searchItem)
+        {
+            int index = -1;
+            for (int i = 0; i < jla.Count; i++)
+            {
+                if (jla[i].Equals(searchItem, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
         }
     }
 }
