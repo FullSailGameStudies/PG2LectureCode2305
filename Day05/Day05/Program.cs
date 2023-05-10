@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
 
 namespace Day04
@@ -136,7 +138,14 @@ namespace Day04
                     Add students and grades to your dictionary that you created in CHALLENGE 2.
              
             */
-
+            Dictionary<string, double> grades = new();
+            List<string> students = new()
+            { "Paul", "Truman", "Ryan", "Edwin", "John", "Joseph", "Stephen", "David" };
+            Random rando = new Random();
+            foreach (var student in students)
+            {
+                grades[student] = rando.NextDouble() * 100;
+            }
 
 
 
@@ -152,10 +161,23 @@ namespace Day04
                 You should use a foreach loop when needing to loop over the entire dictionary.
                
             */
+            for (int i = 0; i < menu.Count; i++)
+            {
+                KeyValuePair<string,double> menuItem = menu.ElementAt(i);
+            }
+            Console.OutputEncoding = Encoding.UTF8;
+            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("jp-JP");
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("jp-JP");
+            Console.WriteLine("-----G's International------");
+            foreach (var menuItem in menu)
+            {
+                string item = menuItem.Key;
+                double price = menuItem.Value;
+                Console.WriteLine($"{price,15:C2} {item}");
+            }
+            Console.WriteLine();
             foreach (KeyValuePair<Weapon, int> weaponCount in backpack)
                 Console.WriteLine($"You have {weaponCount.Value} {weaponCount.Key}");
-
-
 
             /*
                 CHALLENGE 4:
