@@ -95,7 +95,7 @@ namespace Day04
 
             menu.Add("sushi", 4.99);
             menu.Add("quinoa", 3.59);
-            if(!menu.TryAdd("quinoa", 3.59))
+            if (!menu.TryAdd("quinoa", 3.59))
             {
                 Console.WriteLine("Quinoa is already on the menu. (not sure why though)");
             }
@@ -103,7 +103,7 @@ namespace Day04
             {
                 menu.Add("quinoa", 6.59);//throws exception
             }
-            catch(ArgumentException agex)
+            catch (ArgumentException agex)
             {
 
             }
@@ -138,7 +138,7 @@ namespace Day04
                     Add students and grades to your dictionary that you created in CHALLENGE 2.
              
             */
-            Dictionary<string, double> grades = new();
+            Dictionary<string, double> grades = new Dictionary<string, double>();
             List<string> students = new()
             { "Paul", "Truman", "Ryan", "Edwin", "John", "Joseph", "Stephen", "David" };
             Random rando = new Random();
@@ -163,7 +163,7 @@ namespace Day04
             */
             for (int i = 0; i < menu.Count; i++)
             {
-                KeyValuePair<string,double> menuItem = menu.ElementAt(i);
+                KeyValuePair<string, double> menuItem = menu.ElementAt(i);
             }
             Console.OutputEncoding = Encoding.UTF8;
             //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("jp-JP");
@@ -185,19 +185,7 @@ namespace Day04
                     Loop over your grades dictionary and print each student name and grade.
              
             */
-            Console.WriteLine("   May PG02   ");
-            foreach (var student in grades)
-            {
-                double grade = student.Value;
-                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
-                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
-                                          (grade < 79.5) ? ConsoleColor.Yellow :
-                                          (grade < 89.5) ? ConsoleColor.Blue :
-                                          ConsoleColor.Green;
-                Console.Write($"{student.Value,7:N2}");
-                Console.ResetColor();
-                Console.WriteLine($" {student.Key}");
-            }
+            PrintGrades(grades);
 
 
 
@@ -222,7 +210,7 @@ namespace Day04
                 double menuPrice = menu[name];
                 Console.WriteLine($"{name} costs {menuPrice:C2}");
             }
-            if(menu.TryGetValue(name, out double nuggetPrice))
+            if (menu.TryGetValue(name, out double nuggetPrice))
             {
                 Console.WriteLine($"{name} costs {nuggetPrice:C2}");
             }
@@ -245,8 +233,20 @@ namespace Day04
                     else print out a message that the student was not found
              
             */
+            do
+            {
+                Console.Write("Student to find: ");
+                string studentName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(studentName)) break;
+
+                if (grades.TryGetValue(studentName, out double studentGrade))
+                    Console.WriteLine($"{studentName}'s grade is {studentGrade:N2}");
+                else
+                    Console.WriteLine($"{studentName} is not in PG2!");
+            } while (true);
 
 
+            double paul = grades["Paul"];//get the value for the key
 
 
 
@@ -270,9 +270,43 @@ namespace Day04
             /*
                 CHALLENGE 6:
 
-                    Pick any student and curve the grade (add 5) that is stored in the grades dictionary
+                    Pick any student and curve the grade (add 5) that is stored 
+                    in the grades dictionary
              
             */
+
+            do
+            {
+                PrintGrades(grades);
+                Console.Write("Student to curve: ");
+                string studentName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(studentName)) break;
+
+                if (grades.TryGetValue(studentName, out double studentGrade))
+                {
+                    grades[studentName] = (studentGrade > 95) ? 100 : studentGrade + 5;
+                    Console.WriteLine($"{studentName}'s grade was {studentGrade:N2}. Now it's {grades[studentName]:N2}.");
+                }
+                else
+                    Console.WriteLine($"{studentName} is not in PG2!");
+            } while (true);
+        }
+
+        private static void PrintGrades(Dictionary<string, double> grades)
+        {
+            Console.WriteLine("   May PG02   ");
+            foreach (var student in grades)
+            {
+                double grade = student.Value;
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue :
+                                          ConsoleColor.Green;
+                Console.Write($"{student.Value,7:N2}");
+                Console.ResetColor();
+                Console.WriteLine($" {student.Key}");
+            }
         }
 
         private static void FindHero(List<string> jla, string name)
