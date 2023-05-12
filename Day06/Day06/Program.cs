@@ -33,10 +33,17 @@ namespace Day06
             backpack.Add(Weapon.Axe, 2);
             backpack[Weapon.Spear] = 1;
 
+            bool isMaceFound = backpack.TryGetValue(Weapon.Mace, out int maceCount);
+            if (isMaceFound)
+            {
+                int count = backpack[Weapon.Mace];
+            }
 
-            bool wasFound = backpack.Remove(Weapon.Mace);
-            if (!wasFound) Console.WriteLine($"{Weapon.Mace} was NOT found.");
-
+            bool isGone = backpack.Remove(Weapon.Axe);
+            if (isGone)
+                Console.WriteLine("The trees are happy now.");
+            else
+                Console.WriteLine("No axes. You may pass.");
 
 
             /*
@@ -56,6 +63,25 @@ namespace Day06
             Dictionary<string, double> grades = new();
             foreach (var student in students)
                 grades.Add(student, rando.NextDouble() * 100);
+
+            do
+            {
+                Console.WriteLine("  JLA High  ");
+                foreach (var grade in grades)
+                    Console.WriteLine($"{grade.Value,7:N2} {grade.Key}");
+
+                Console.Write("Student to drop? ");
+                string student = Console.ReadLine();
+                if (string.IsNullOrEmpty(student)) break;
+
+                if(grades.Remove(student))
+                {
+                    Console.WriteLine($"{student} was expelled!");
+                }
+                else
+                    Console.WriteLine($"{student} was never admitted to the JLA High");
+
+            } while (true);
             
         }
     }
