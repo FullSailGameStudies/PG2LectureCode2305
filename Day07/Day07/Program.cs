@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Day07CL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -102,7 +103,11 @@ namespace Day07
                     Add an auto-property for Name
             */
 
-
+            Person alfred;//null
+            alfred = new Person();
+            alfred.Age = 125;
+            alfred.Name = "Alfred Pennyworth";
+            Console.WriteLine($"{alfred.Name} is {alfred.Age} years old!");
 
 
 
