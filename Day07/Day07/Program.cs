@@ -104,12 +104,10 @@ namespace Day07
             */
 
             Person alfred;//null
-            alfred = new Person();
-            alfred.Age = 125;
-            alfred.Name = "Alfred Pennyworth";
+            alfred = new Person(125, "Alfred Pennyworth");
+            //alfred.Age = 125;
+            //alfred.Name = "Alfred Pennyworth";
             Console.WriteLine($"{alfred.Name} is {alfred.Age} years old!");
-
-
 
 
             /*  
@@ -138,6 +136,15 @@ namespace Day07
             */
 
 
+            Car firstCar = new Car("Ford", "5.0 Mustang GT", ConsoleColor.Blue);
+            Car pauls = new Car("Nissan", "Rogue Sport", ConsoleColor.Gray);
+            firstCar.MyVehicle();//passes firstCar in for 'this'
+            pauls.MyVehicle();
+            //firstCar.Make = "Ford";
+            //firstCar.Model = "Mustang GT";
+            //firstCar.ExteriorColor = ConsoleColor.Blue;
+            //Console.WriteLine($"My ride is a {firstCar.ExteriorColor} {firstCar.Make} {firstCar.Model}! sweet.");
+
 
 
 
@@ -162,7 +169,8 @@ namespace Day07
                     write an ItsMyBirthday method. increment age and print out a happy message.
             */
 
-
+            //firstCar.VehicleReport();
+            Car.VehicleReport();
 
 
 
@@ -176,6 +184,10 @@ namespace Day07
                     pass in a parameter for the new position
                     update the property and print out the new position
             */
+
+            FantasyWeapon sting = new FantasyWeapon(WeaponRarity.Legendary, 100, 1000, 100000);
+            int damage = sting.DoDamage();
+            Console.WriteLine($"I swing sting and do {damage} damage to the rat!");
         }
     }
 }
