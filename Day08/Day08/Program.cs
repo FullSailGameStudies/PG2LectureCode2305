@@ -62,13 +62,20 @@ namespace Day08
                 CHALLENGE 2:
                     Create a List of Weapon. Create several Pistols and add them to the list of weapons.
             */
+            // UPCASTING
+            //from a DERIVED (employee) to a BASE (Person)
+            Person peep = serf;//upcasting. always safe.
+            //Console.WriteLine($"Salary: {peep.Salary}");
+            peep = bob;
 
+            int num = 5;//4 bytes
+            long bigNum = num;//implicit cast
+            num = (int)bigNum;//explicit cast
 
-
-
-
-
-
+            List<Weapon> weapons = new List<Weapon>();
+            weapons.Add(pewpew);
+            weapons.Add(WeaponFactory.CreatePistol(5, 10, 200, 50));//upcasting
+            weapons.Add(new Knife(true, 1, 15));
 
 
             /*  
@@ -103,10 +110,35 @@ namespace Day08
                     Call ShowMe on each weapon.
                     Downcast to a Pistol and print the rounds and mag capacity of each pistol
             */
+            Console.WriteLine("   Dora's Stash   ");
+            foreach (var weapon in weapons)
+            {
+                weapon.ShowMe();
+                if(weapon is Pistol bang)
+                    Console.WriteLine($"\tRounds: {bang.Rounds}\tMagazine Capacity: {bang.MagCapacity}");                
+                else if(weapon is Knife slasher)
+                    Console.WriteLine($"\tIs double-sided? {slasher.DoubleSided}");
+            }
 
+            try
+            {
+                Employee ceo = (Employee)bob;//NOT SAFE!
+            }
+            catch (Exception)
+            {
+            }
 
+            //use the 'as' keyword
+            //if the casting doesn't work, NULL will be assigned to the variable
+            Employee emp1 = bob as Employee;
+            if(emp1 != null)
+                Console.WriteLine($"Salary: {emp1.Salary}");
 
-
+            //use pattern matching (the 'is' keyword)            
+            if (bob is Employee emp2)
+            {
+                Console.WriteLine($"Salary: {emp2.Salary}");
+            }
 
 
 
