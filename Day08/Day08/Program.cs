@@ -25,7 +25,6 @@ namespace Day08
     {
         static void Main(string[] args)
         {
-            //Weapon pewpew = new Weapon();
 
             /*
                 CHALLENGE 1:
@@ -35,6 +34,13 @@ namespace Day08
                     Add a constructor that calls the base constructor
              
             */
+            Person bob = new Person(13, "Robert");
+            Employee serf = new Employee(10000, 22, "Steev");
+
+
+            //Weapon pewpew = new Weapon();
+            Pistol pewpew = new Pistol(15, 35, 500, 10);
+            Console.WriteLine($"Range: {pewpew.Range}");
 
 
 

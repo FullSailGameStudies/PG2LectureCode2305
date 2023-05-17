@@ -14,7 +14,14 @@ namespace Day08CL
             Damage = damage;
         }
 
-        public int Range { get; }
+        protected int _range;
+
+        public int Range
+        {
+            get { return _range; }
+            set { _range = value; }
+        }
+
         public int Damage { get; }
 
         public void ShowMe()
