@@ -35,5 +35,10 @@ namespace Day08CL
             Age++;
             Console.WriteLine($"It's my birthday! I turned {Age} years old today. Let's eat some cake!");
         }
+
+        public virtual void Eat(string food)
+        {
+            Console.WriteLine($"{Name} is eating {food}. nom nom.");
+        }
     }
 }

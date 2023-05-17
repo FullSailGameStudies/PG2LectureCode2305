@@ -17,5 +17,11 @@ namespace Day08CL
 
         public int Rounds { get; set; }
         public int MagCapacity { get; set; }
+
+        public override void ShowMe()
+        {
+            base.ShowMe();
+            Console.WriteLine($"\tRounds: {Rounds}\tMagazine Capacity: {MagCapacity}");
+        }
     }
 }

@@ -14,5 +14,11 @@ namespace Day08CL
         }
 
         public bool DoubleSided { get; }
+
+        public override void ShowMe()
+        {
+            base.ShowMe();
+            Console.WriteLine($"\tIs double-sided? {DoubleSided}");
+        }
     }
 }

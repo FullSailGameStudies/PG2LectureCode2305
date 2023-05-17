@@ -24,7 +24,7 @@ namespace Day08CL
 
         public int Damage { get; }
 
-        public void ShowMe()
+        public virtual void ShowMe()
         {
             Console.WriteLine($"Range: {Range} Damage: {Damage}");
         }

@@ -167,7 +167,24 @@ namespace Day08
                 CHALLENGE 4:
                     Override Weapon's ShowMe method in the Pistol method.
                     In Pistol's version, call the base version and print out the rounds and magCapacity
+                    Fix the loop to remove the if-elseif.
             */
+
+            Employee steve = new Employee(75000, 25, "Stephen");
+            steve.Eat("pepperoni pizza");
+            Person stevo = steve;
+            stevo.Eat("meat-lovers pizza");
+
+
+            Console.WriteLine("   Dora's Stash2   ");
+            foreach (Weapon weapon in weapons)
+            {
+                weapon.ShowMe();
+                //if (weapon is Pistol bang)
+                //    Console.WriteLine($"\tRounds: {bang.Rounds}\tMagazine Capacity: {bang.MagCapacity}");
+                //else if (weapon is Knife slasher)
+                //    Console.WriteLine($"\tIs double-sided? {slasher.DoubleSided}");
+            }
         }
     }
 }

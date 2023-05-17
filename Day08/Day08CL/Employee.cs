@@ -14,6 +14,12 @@ namespace Day08CL
             Salary = salary;
         }
 
+        public override void Eat(string food)
+        {
+            Console.WriteLine($"Going on a break now. {Name} will be back in 2 hours.");
+            base.Eat(food);
+        }
+
         public float Salary { get; set; }
     }
 }
