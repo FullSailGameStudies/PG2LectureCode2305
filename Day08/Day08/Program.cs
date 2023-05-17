@@ -1,4 +1,7 @@
-﻿namespace Day08
+﻿using Day08CL;
+using System.Threading.Channels;
+
+namespace Day08
 {
     /*                    DERIVING CLASSESS          
                                                                
@@ -22,6 +25,7 @@
     {
         static void Main(string[] args)
         {
+            //Weapon pewpew = new Weapon();
 
             /*
                 CHALLENGE 1:
