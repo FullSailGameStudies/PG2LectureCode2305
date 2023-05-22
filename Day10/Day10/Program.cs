@@ -96,11 +96,30 @@
                 bool isFirst = true;
                 foreach (var hero in heroes)
                 {
-                    if(!isFirst) sw.WriteLine(); 
+                    if (!isFirst) sw.WriteLine();
                     sw.Write($"{hero.Name}{delimiter}{hero.Secret}{delimiter}{hero.Power}");
 
                     isFirst = false;
                 }
+            }
+
+            //reading CSV
+            if (File.Exists(filePath))
+            {
+                //using (StreamReader sr = new StreamReader(filePath))
+                //{
+
+                //}
+                //OR...
+                string fileText = File.ReadAllText(filePath);//open, read, close the file
+                string[] fileData = fileText.Split(delimiter);
+                foreach (var item in fileData)
+                {
+                    Console.WriteLine(item);
+                }
+                int.TryParse(fileData[1], out int num);
+                double.TryParse(fileData[2], out double d);
+                bool.TryParse(fileData[3], out bool b);
             }
 
             /*
@@ -109,6 +128,43 @@
                     Open the CSV file and read the data into a new list of superheroes
              
             */
+            //  hero\nhero\n
+            //  name$secret$power
+            List<Superhero> jla = new();
+            using (StreamReader sr = new StreamReader(heroPath))
+            {
+                string line;
+                while((line = sr.ReadLine()) != null) 
+                { 
+                    string[] heroData = line.Split(delimiter);
+                    Superhero super = new()
+                    {
+                        Name = heroData[0],
+                        Secret = heroData[1],
+                        Power = (Powers)Enum.Parse(typeof(Powers), heroData[2])
+                    };
+                    jla.Add(super);
+                }
+            }
+            //OR...use file.ReadAlltext
+            jla = new();
+            string jlaText = File.ReadAllText(heroPath);
+            string[] heroesArray = jlaText.Split('\n');
+            foreach (var hero in heroesArray)
+            {
+                string[] heroData = hero.Split(delimiter);
+                Superhero super = new()
+                {
+                    Name = heroData[0],
+                    Secret = heroData[1],
+                    Power = (Powers)Enum.Parse(typeof(Powers), heroData[2])
+                };
+                jla.Add(super);
+            }
+            foreach (var item in jla)
+            {
+                Console.WriteLine($"{item.Name} {item.Secret} {item.Power}");
+            }
 
 
             /*
@@ -121,9 +177,9 @@
                 use the string's Split method
 
             */
-            string csvString = "Batman;Bruce Wayne;Bats;The Dark Knight";
+            string csvString = "Batman;Bruce Wayne;Bats;The Dark Knight#Joker#Bane#Poison Ivy";
             string[] data = csvString.Split(';');
-
+            string[] dcData = csvString.Split(new char[] { ';', '#' });
 
 
 
