@@ -213,6 +213,12 @@ namespace Day10
             //OR...
             File.WriteAllText(scorePath, JsonConvert.SerializeObject(scores));
 
+            /*
+             * Challenge 3:
+                Serialize (write) the list of superheroes to a json file
+            */
+            heroPath = Path.ChangeExtension(heroPath, "json");
+            File.WriteAllText(heroPath, JsonConvert.SerializeObject(heroes, Formatting.Indented));
 
 
 
