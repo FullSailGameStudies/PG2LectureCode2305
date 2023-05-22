@@ -20,7 +20,7 @@
 
     public enum Powers
     {
-        Typing, Money, Jumping, Speed, Strength
+        Typing, Money, Jumping, Speed, Strength, Swimming
     }
     class Superhero
     {
@@ -71,24 +71,37 @@
             using (StreamWriter sw = new StreamWriter(filePath))//1) open the file
             {
                 //2. write to the file
-                sw.Write("Superheroes are awesome!");
-                sw.Write(delimiter);
-                sw.Write(5);
-                sw.Write(delimiter);
-                sw.Write(420.13);
-                sw.Write(delimiter);
+                sw.Write("Superheroes are awesome!"); sw.Write(delimiter);
+                sw.Write(5); sw.Write(delimiter);
+                sw.Write(420.13); sw.Write(delimiter);
                 sw.Write(true);
                 //sw.Close();//3.close the file
             }//3.close the file
-
             /*
                 CHALLENGE 1:
-
                     Create a List of Superhero.
-                    Write the list to a CSV file
-             
+                    Write the list to a CSV file             
             */
+            List<Superhero> heroes = new List<Superhero>();
+            heroes.Add(new Superhero() { Name = "Batman", Secret = "Bruce Wayne", Power = Powers.Money });
+            heroes.Add(new Superhero() { Name = "Superman", Secret = "Clark Kent", Power = Powers.Jumping });
+            heroes.Add(new Superhero() { Name = "Wonder Woman", Secret = "Diana Prince", Power = Powers.Strength });
+            heroes.Add(new Superhero() { Name = "Flash", Secret = "Barry Allen", Power = Powers.Speed });
+            heroes.Add(new Superhero() { Name = "Aquaman", Secret = "Arthus Curry", Power = Powers.Swimming });
+            string heroPath = "JLA.csv";
+            //heroPath = Path.Combine(directories, heroPath);
+            using (StreamWriter sw = new StreamWriter(heroPath))
+            {
+                char heroDelim = '*';
+                bool isFirst = true;
+                foreach (var hero in heroes)
+                {
+                    if(!isFirst) sw.WriteLine(); 
+                    sw.Write($"{hero.Name}{delimiter}{hero.Secret}{delimiter}{hero.Power}");
 
+                    isFirst = false;
+                }
+            }
 
             /*
                 CHALLENGE 2:
