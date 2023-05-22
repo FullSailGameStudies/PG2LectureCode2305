@@ -231,6 +231,29 @@ namespace Day10
                 Recreating the objects from the saved state (data) of objects
 
             */
+            List<int> loadedScores;
+
+            if (File.Exists(scorePath))
+            {
+                string scoreText = File.ReadAllText(scorePath);
+                try
+                {
+                    loadedScores = JsonConvert.DeserializeObject<List<int>>(scoreText);
+                    foreach (var score in loadedScores)
+                    {
+                        Console.WriteLine(score);
+                    }
+                }
+                catch (Exception)
+                {
+                } 
+            }
+
+            /*
+             
+                Challenge: deserialize the jla.json file into a list of superheroes
+
+            */
 
         }
     }
