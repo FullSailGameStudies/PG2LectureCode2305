@@ -254,6 +254,25 @@ namespace Day10
                 Challenge: deserialize the jla.json file into a list of superheroes
 
             */
+            List<Superhero> jla2 = null;
+            if (File.Exists(heroPath))
+            {
+                string heroText = File.ReadAllText(heroPath);
+                try
+                {
+                    jla2 = JsonConvert.DeserializeObject<List<Superhero>>(heroText);
+                }
+                catch (Exception)
+                {
+                }
+            }
+            if(jla2 != null)
+            {
+                foreach (var hero in jla2)
+                {
+                    Console.WriteLine($"{hero.Name} {hero.Secret} {hero.Power}");
+                }
+            }
 
         }
     }
