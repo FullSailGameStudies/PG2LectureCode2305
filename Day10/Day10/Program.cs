@@ -17,6 +17,18 @@
             the using() statement can ensure that the file is closed
 
     */
+
+    public enum Powers
+    {
+        Typing, Money, Jumping, Speed, Strength
+    }
+    class Superhero
+    {
+        public string Name { get; set; }
+        public string Secret { get; set; }
+        public Powers Power { get; set; }
+    }
+
     internal class Program
     {
         static void Main(string[] args)
@@ -49,12 +61,41 @@
 
             */
 
-            string directories = @"C:\temp\2212"; //use @ in front of the string to ignore escape sequences inside the string
+            string directories = @"C:\temp\2305"; //use @ in front of the string to ignore escape sequences inside the string
             string fileName = "tempFile.txt";
             string filePath = Path.Combine(directories, fileName); //use Path.Combine to get the proper directory separators
 
+            //write CSV data
+            //delimiter (data separator)
+            char delimiter = '$';
+            using (StreamWriter sw = new StreamWriter(filePath))//1) open the file
+            {
+                //2. write to the file
+                sw.Write("Superheroes are awesome!");
+                sw.Write(delimiter);
+                sw.Write(5);
+                sw.Write(delimiter);
+                sw.Write(420.13);
+                sw.Write(delimiter);
+                sw.Write(true);
+                //sw.Close();//3.close the file
+            }//3.close the file
+
+            /*
+                CHALLENGE 1:
+
+                    Create a List of Superhero.
+                    Write the list to a CSV file
+             
+            */
 
 
+            /*
+                CHALLENGE 2:
+
+                    Open the CSV file and read the data into a new list of superheroes
+             
+            */
 
 
             /*
@@ -70,12 +111,6 @@
             string csvString = "Batman;Bruce Wayne;Bats;The Dark Knight";
             string[] data = csvString.Split(';');
 
-            /*
-                CHALLENGE 1:
-
-                    read the data in from the file above and split the line to get the data
-             
-            */
 
 
 

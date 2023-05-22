@@ -10,6 +10,17 @@
             int n1 = 5, n2 = 2;
             int sum = t1000.Sum(n1,n2);
             Console.WriteLine($"{n1} + {n2} = {sum}");
+
+
+            Random randy = new();
+            List<double> grades = new();
+            for (int i = 0; i < 10; i++)
+                grades.Add(randy.NextDouble() * 100);
+
+            //add extension for printing the grades
+            grades.PrintGrades();
+
+            //add extension for getting the color for the grade
         }
     }
 
@@ -31,6 +42,11 @@
     class Calculator
     {
         public int Sum(int n1, int n2)
+        {
+            return n1 + n2;
+        }
+
+        public double Sum(double n1, double n2)
         {
             return n1 + n2;
         }
