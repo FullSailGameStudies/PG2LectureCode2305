@@ -1,4 +1,6 @@
-﻿namespace Day10
+﻿using Newtonsoft.Json;
+
+namespace Day10
 {
 
     /*
@@ -193,7 +195,23 @@
                 Saving the state (data) of objects
 
             */
+            Random randy = new();
+            List<int> scores = new();
+            for (int i = 0; i < 10; i++)
+                scores.Add(randy.Next());
 
+            string scorePath = "scores.json";
+            using (StreamWriter sw = new StreamWriter(scorePath))
+            {
+                using (JsonTextWriter jtw = new(sw))
+                {
+                    JsonSerializer jsonSerializer = new();
+                    jsonSerializer.Formatting = Formatting.Indented;
+                    jsonSerializer.Serialize(jtw, scores);
+                }
+            }
+            //OR...
+            File.WriteAllText(scorePath, JsonConvert.SerializeObject(scores));
 
 
 
