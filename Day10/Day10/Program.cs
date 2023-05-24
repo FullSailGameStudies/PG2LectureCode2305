@@ -264,6 +264,7 @@ namespace Day10
                 }
                 catch (Exception)
                 {
+
                 }
             }
             if(jla2 != null)
